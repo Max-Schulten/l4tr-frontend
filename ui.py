@@ -10,6 +10,10 @@ dotenv.load_dotenv()
 API_URL = os.getenv("API_URL", "http://localhost:8000/")
 API_KEY = os.getenv("API_KEY")
 
+HEADERS ={
+    "x-api-key": API_KEY
+}
+
 st.set_page_config(page_title="L4TR", page_icon="📖")
 
 model_name = None
@@ -17,6 +21,7 @@ try:
     resp = requests.get(
         API_URL,
         timeout=60,
+        headers=HEADERS
     )
     resp.raise_for_status()
     data = resp.json()
@@ -56,6 +61,7 @@ if prompt := st.chat_input("Ask me a math question..."):
                     "messages": st.session_state["messages"]
                 },
                 timeout=60,
+                headers=HEADERS
             )
             resp.raise_for_status()
             data = resp.json()
