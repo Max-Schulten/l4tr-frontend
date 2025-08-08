@@ -60,7 +60,7 @@ if prompt := st.chat_input("Ask me a math question..."):
                     "prompt": prompt,
                     "messages": st.session_state["messages"]
                 },
-                timeout=60,
+                timeout=120,
                 headers=HEADERS
             )
             resp.raise_for_status()
