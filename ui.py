@@ -17,19 +17,6 @@ HEADERS ={
 
 st.set_page_config(page_title="L4TR", page_icon="📖")
 
-
-st.code("API_URL =", API_URL)
-
-try:
-    st.code(f"DNS =, {socket.getaddrinfo('api.l4tr.com', 443)}")
-except Exception as e:
-    st.code(f"DNS error: {e}")
-
-try:
-    st.code(f"Outbound IP = {requests.get("https://api.ipify.org", timeout=10).text}")
-except Exception as e:
-    st.code(f"Outbound IP lookup failed: {e}")
-
 model_name = None
 try:
     resp = requests.get(
