@@ -4,6 +4,7 @@ import re
 import time
 import os
 import dotenv
+import socket
 
 dotenv.load_dotenv()
 
@@ -15,6 +16,20 @@ HEADERS ={
 }
 
 st.set_page_config(page_title="L4TR", page_icon="📖")
+
+
+st.write("API_URL =", API_URL)
+st.write("PROXY env =", {k:v for k,v in os.environ.items() if "PROXY" in k.upper()})
+
+try:
+    st.write("DNS =", socket.getaddrinfo("api.l4tr.com", 443))
+except Exception as e:
+    st.write("DNS error:", e)
+
+try:
+    st.write("Outbound IP =", requests.get("https://api.ipify.org", timeout=10).text)
+except Exception as e:
+    st.write("Outbound IP lookup failed:", e)
 
 model_name = None
 try:
