@@ -18,18 +18,17 @@ HEADERS ={
 st.set_page_config(page_title="L4TR", page_icon="📖")
 
 
-print("API_URL =", API_URL)
-print("PROXY env =", {k:v for k,v in os.environ.items() if "PROXY" in k.upper()})
+st.code("API_URL =", API_URL)
 
 try:
-    print("DNS =", socket.getaddrinfo("api.l4tr.com", 443))
+    st.code(f"DNS =, {socket.getaddrinfo('api.l4tr.com', 443)}")
 except Exception as e:
-    print("DNS error:", e)
+    st.code(f"DNS error: {e}")
 
 try:
-    print("Outbound IP =", requests.get("https://api.ipify.org", timeout=10).text)
+    st.code(f"Outbound IP = {requests.get("https://api.ipify.org", timeout=10).text}")
 except Exception as e:
-    print("Outbound IP lookup failed:", e)
+    st.code(f"Outbound IP lookup failed: {e}")
 
 model_name = None
 try:
