@@ -11,6 +11,13 @@ dotenv.load_dotenv()
 API_URL = st.secrets.get("API_URL", "http://localhost:8000/")
 API_KEY = st.secrets.get("API_KEY")
 
+import socket
+try:
+    ip = socket.gethostbyname("api.l4tr.com")
+    st.write(f"Resolved to: `{ip}`")
+except Exception as e:
+    st.error(f"DNS failed: {e}")
+
 HEADERS ={
     "x-api-key": API_KEY
 }
