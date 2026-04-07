@@ -21,7 +21,7 @@ model_name = None
 try:
     resp = requests.get(
         API_URL,
-        timeout=60,
+        timeout=(5,55),
         headers=HEADERS
     )
     resp.raise_for_status()
