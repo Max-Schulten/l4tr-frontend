@@ -8,8 +8,8 @@ import socket
 
 dotenv.load_dotenv()
 
-API_URL = os.getenv("API_URL", "http://localhost:8000/")
-API_KEY = os.getenv("API_KEY")
+API_URL = st.secrets.get("API_URL", "http://localhost:8000/")
+API_KEY = st.secrets.get("API_KEY")
 
 HEADERS ={
     "x-api-key": API_KEY
